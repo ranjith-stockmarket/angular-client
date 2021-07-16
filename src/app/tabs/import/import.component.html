@@ -1,0 +1,37 @@
+<div fxLayout="column" fxLayoutGap="30px">
+<div fxFlex="grow" fxFlexOffset="30px" fxLayout="row">
+  <input type="file" fxFlex="94" fxFlexOffset="3%" style="font-size: small; color: green" (change)="viewFile($event)">
+</div>
+<div fxFlex="grow" fxLayout="row"  fxLayoutAlign="space-around center">
+  <table mat-table [dataSource]="list" class="mat-elevation-z10" fxFlex="94"  >
+
+    <ng-container matColumnDef="CompanyCode">
+      <th mat-header-cell *matHeaderCellDef class="table-header"> Company Code </th>
+      <td mat-cell *matCellDef="let element" class="table-cell" > {{element.CompanyCode}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="StockExchange">
+      <th mat-header-cell *matHeaderCellDef class="table-header"> Stock Exchange </th>
+      <td mat-cell *matCellDef="let element" class="table-cell"> {{element.StockExchange}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Date">
+      <th mat-header-cell *matHeaderCellDef class="table-header"> Date </th>
+      <td mat-cell *matCellDef="let element" class="table-cell"> {{element.Timestamp | date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Time">
+      <th mat-header-cell *matHeaderCellDef class="table-header"> Time </th>
+      <td mat-cell *matCellDef="let element" class="table-cell"> {{element.Timestamp | date:'shortTime'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="PricePerShare">
+      <th mat-header-cell *matHeaderCellDef class="table-header"> Stock Price </th>
+      <td mat-cell *matCellDef="let element" class="table-cell"> {{element.PricePerShare}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+</div>
