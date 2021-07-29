@@ -1,3 +1,5 @@
 <app-nav></app-nav>
-<app-tabs>
+<app-login *ngIf="!authService.logged">
+</app-login>
+<app-tabs *ngIf="authService.logged">
 </app-tabs>

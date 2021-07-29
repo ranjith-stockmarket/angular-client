@@ -1,1 +1,81 @@
-<p>ipo works!</p>
+<div fxLayout="row" fxLayoutAlign="center center" style="margin-top: 30px">
+  <div fxLayout="column" fxFlex.gt-md="45" fxFlex="100" style="background:#fcfbfc;border-radius:10px;padding: 25px 0 40px 0;">
+    <div fxLayout="row" fxLayoutAlign="space-around center" >
+      <h3>Add IPO</h3>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" >
+      <mat-form-field appearance="fill" fxFlex="75">
+        <mat-label>Company</mat-label>
+        <input matInput #company>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <mat-form-field appearance="fill" fxFlex="75">
+        <mat-label>Stock Exchanges</mat-label>
+        <mat-chip-list #chipList>
+          <mat-chip
+            *ngFor="let stockExchange of stockExchanges"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(stockExchange)">
+            {{stockExchange}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="New Stock Exchange..."
+            #stockExchangeInput
+            [formControl]="stockExchangeCtrl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let stockExchange of filteredStockExchanges | async" [value]="stockExchange">
+            {{stockExchange}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <mat-form-field appearance="fill" floatLabel="always" fxFlex="75">
+        <mat-label>Price Per Share</mat-label>
+        <input matInput #price type="number">
+        <span matPrefix>&#8377;&nbsp;</span>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <mat-form-field appearance="fill" fxFlex="75">
+        <mat-label>Total no.of Shares</mat-label>
+        <input matInput #shares type="number">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="3%">
+        <mat-form-field appearance="fill" fxFlex="36">
+          <mat-label>Open Date</mat-label>
+          <input matInput type="date">
+        </mat-form-field>
+        <mat-form-field appearance="fill" fxFlex="36">
+          <mat-label>Open Time</mat-label>
+          <input matInput type="time">
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <mat-form-field appearance="fill" fxFlex="75">
+        <mat-label>Remarks</mat-label>
+        <textarea matInput #remarks></textarea>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <button mat-flat-button color="primary" fxFlex="75">
+        Save
+      </button>
+    </div>
+    <!--    {{name.value}}
+        {{ceo.value}}
+        {{bod.value}}
+        {{sector.value}}
+        {{turnOver.value}}
+        {{brief.value}}-->
+  </div>
+</div>

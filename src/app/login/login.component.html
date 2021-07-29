@@ -1,0 +1,26 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="margin-top: 30px">
+  <div fxLayout="column" fxFlex.gt-md="45" fxFlex="100" style="background:#fcfbfc;border-radius:10px;padding: 25px 0 40px 0;">
+    <div fxLayout="row" fxLayoutAlign="space-around center" >
+      <h3>Login</h3>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div fxLayout="row" fxLayoutAlign="space-around center" >
+      <mat-form-field appearance="fill" fxFlex="75">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <mat-form-field appearance="fill" fxFlex="75">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <button mat-flat-button color="primary" fxFlex="75" type="submit">
+        Login
+      </button>
+    </div>
+    </form>
+  </div>
+</div>

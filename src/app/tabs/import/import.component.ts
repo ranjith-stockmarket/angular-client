@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as xlsx  from 'xlsx';
+import {HttpClient} from "@angular/common/http";
 
 export interface StockPrice{
   CompanyCode : number
@@ -21,7 +22,7 @@ export class ImportComponent implements OnInit {
   list:any
   displayedColumns: string[] = ['CompanyCode', 'StockExchange', 'Date', 'Time', 'PricePerShare'];
 
-  constructor() { }
+  constructor(private httpClient:HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -101,6 +102,7 @@ export class ImportComponent implements OnInit {
           stock_exchanges : stockExchanges
         })
       }
+      console.log(this.res);
     }
   }
 }
